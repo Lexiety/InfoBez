@@ -74,16 +74,24 @@ ApplicationWindow {
             onClicked: { encryptedText.text = encryptGronsfeld(inputField.text, keyField.text); }
         }
 
-        Text 
+        Rectangle 
         {
-            text: "Encrypted Result:"
+            width: encryptedText.width + 10  
+            height: encryptedText.height + 10 
+            color: "#6A7B8B" 
+            border.color: "#7F7B8B"  
+            border.width: 3  
+
+            Text 
+            {
+                id: encryptedText
+                text: "Encrypted Result"
+                font.pointSize: 16
+                color: "white" 
+                anchors.centerIn: parent 
+            }
         }
 
-        Text 
-        {
-            id: encryptedText
-            text: ""
-        }
 
         Button 
         {
