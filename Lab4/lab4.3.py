@@ -3,15 +3,18 @@ from tkinter import filedialog
 from functools import partial
 
 def encrypt_block(block, key):
+    while len(key) < len(block):
+        key += key
     block_int = int(block, 2)
-    key_int = int(key, 2)
+    key_int = int(key[:len(block)], 2)
     encrypted_block_int = block_int ^ key_int
     encrypted_block = bin(encrypted_block_int)[2:].zfill(len(block))
     return encrypted_block
 
-
 def decrypt_block(block, key):
-    decrypted_block_int = int(block, 2) ^ int(key, 2) 
+    while len(key) < len(block):
+        key += key
+    decrypted_block_int = int(block, 2) ^ int(key[:len(block)], 2) 
     decrypted_block = bin(decrypted_block_int)[2:].zfill(len(block)) 
     return decrypted_block
 
